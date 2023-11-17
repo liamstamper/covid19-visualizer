@@ -1,5 +1,5 @@
 import pandas as pd
-import plotly.express as px
+import plotly.graph_objects as go
 from flask import Flask, render_template_string, request
 
 # Load COVID-19 data
@@ -12,35 +12,42 @@ app = Flask(__name__)
 # Define a route to render the HTML page
 @app.route('/', methods=['GET', 'POST'])
 def render_dashboard():
-    # Get the selected country from the dropdown (default to United States)
-    selected_country = request.form.get('country', 'United States')
+    # Get the selected countries from the dropdowns (default to United States and Brazil)
+    selected_country1 = request.form.get('country1', 'United States')
+    selected_country2 = request.form.get('country2', 'Brazil')
 
-    # Filter data for the selected country
-    country_data = df[df['Country/Region'] == selected_country]
+    # Filter data for the selected countries
+    country_data1 = df[df['Country/Region'] == selected_country1]
+    country_data2 = df[df['Country/Region'] == selected_country2]
 
     # Extract the date columns
-    dates = pd.to_datetime(country_data.columns[4:], format='%m/%d/%y')
+    dates = pd.to_datetime(country_data1.columns[4:], format='%m/%d/%y')
 
-    # Extract the corresponding data
-    cases = country_data.iloc[:, 4:].sum().astype(int).values
+    # Extract the corresponding data for both countries
+    cases1 = country_data1.iloc[:, 4:].sum().astype(int).values
+    cases2 = country_data2.iloc[:, 4:].sum().astype(int).values
 
-    # Create an interactive Plotly chart
-    fig = px.line(x=dates, y=cases, markers=True, title=f"COVID-19 Cases in {selected_country}")
-    fig.update_xaxes(title_text="Date")
-    fig.update_yaxes(title_text="Total Cases")
+    # Create a line chart for cases
+    fig = go.Figure()
 
-    # Customize chart appearance
-    fig.update_traces(line=dict(width=2))
+    # Add lines for the selected countries
+    fig.add_trace(go.Scatter(x=dates, y=cases1, mode='lines+markers', name=selected_country1))
+    fig.add_trace(go.Scatter(x=dates, y=cases2, mode='lines+markers', name=selected_country2))
+
+    # Customize the layout
     fig.update_layout(
-        xaxis=dict(showgrid=True, gridwidth=0.5, gridcolor='lightgray'),
-        yaxis=dict(showgrid=True, gridwidth=0.5, gridcolor='lightgray'),
-        paper_bgcolor='white'
+        title_text="COVID-19 Cases Comparison",
+        xaxis=dict(title_text="Date"),
+        yaxis=dict(title_text="Total Cases"),
+        paper_bgcolor='white',
+        autosize=True,
+        margin=dict(t=50, b=30, l=50, r=10),
     )
 
     # Convert the Plotly figure to HTML
     plot_html = fig.to_html(full_html=False)
 
-    # Define a list of country options for the dropdown
+    # Define a list of country options for the dropdowns
     country_options = df['Country/Region'].unique()
     country_options.sort()
 
@@ -49,7 +56,7 @@ def render_dashboard():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>COVID-19 Data Visualization</title>
+        <title>COVID-19 Cases Comparison</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
         <style>
             body {{
@@ -79,13 +86,17 @@ def render_dashboard():
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
     <body>
-        <h1>COVID-19 Data Visualization</h1>
+        <h1>COVID-19 Cases Comparison</h1>
         <form method="post">
-            <label for="country">Select a Country:</label>
-            <select name="country" id="country">
-                {"".join([f'<option value="{country}" {"selected" if country == selected_country else ""}>{country}</option>' for country in country_options])}
+            <label for="country1">Select the First Country:</label>
+            <select name="country1" id="country1">
+                {"".join([f'<option value="{country}" {"selected" if country == selected_country1 else ""}>{country}</option>' for country in country_options])}
             </select>
-            <input type="submit" value="Submit">
+            <label for="country2">Select the Second Country:</label>
+            <select name="country2" id="country2">
+                {"".join([f'<option value="{country}" {"selected" if country == selected_country2 else ""}>{country}</option>' for country in country_options])}
+            </select>
+            <input type="submit" value="Compare">
         </form>
         <div id="chartDiv">
             {plot_html}
