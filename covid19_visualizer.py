@@ -44,12 +44,38 @@ def render_dashboard():
     country_options = df['Country/Region'].unique()
     country_options.sort()
 
-    # Define an HTML template with the dropdown
+    # Define an HTML template with improved styling
     template = f'''
     <!DOCTYPE html>
     <html>
     <head>
         <title>COVID-19 Data Visualization</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                background-color: #f7f7f7;
+                padding: 20px;
+                text-align: center;
+            }}
+            h1 {{
+                color: #333;
+            }}
+            form {{
+                margin-top: 20px;
+            }}
+            label, select, input[type="submit"] {{
+                font-size: 16px;
+                margin: 5px;
+                padding: 5px;
+            }}
+            select {{
+                width: 200px;
+            }}
+            #chartDiv {{
+                margin-top: 30px;
+            }}
+        </style>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
     <body>
