@@ -12,8 +12,8 @@ app = Flask(__name__)
 # Define a route to render the HTML page
 @app.route('/', methods=['GET', 'POST'])
 def render_dashboard():
-    # Get the selected countries from the dropdowns (default to United States and Brazil)
-    selected_country1 = request.form.get('country1', 'United States')
+    # Get the selected countries from the dropdowns (default to Afghanistan and Brazil)
+    selected_country1 = request.form.get('country1', 'Afghanistan')
     selected_country2 = request.form.get('country2', 'Brazil')
 
     # Filter data for the selected countries
@@ -86,7 +86,7 @@ def render_dashboard():
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
     <body>
-        <h1>COVID-19 Cases Comparison</h1>
+        <h1>COVID-19 Cases</h1>
         <form method="post">
             <label for="country1">Select the First Country:</label>
             <select name="country1" id="country1">
