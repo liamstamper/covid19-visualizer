@@ -29,21 +29,21 @@ This web application provides an interactive dashboard for visualizing COVID-19 
 To run this project locally, follow these steps:
 
 1. Clone the repository to your local machine:
-   
+```bash
 git clone https://github.com/your-username/covid19-visualizer.git
-
+```
 2. Navigate to the project directory:
-
+```bash
 cd covid19-visualizer
-
+```
 3. Install the required Python packages:
-
+```bash
 pip install -r requirements.txt
-
+```
 4. Run the Flask web application:
-
+```bash
 python covid19_visualizer.py
-
+```
 5. Open a web browser and go to `http://localhost:5000` to access the COVID-19 visualization dashboard.
 
 ## Usage
