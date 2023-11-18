@@ -44,7 +44,7 @@ pip install -r requirements.txt
 ```bash
 python covid19_visualizer.py
 ```
-5. Open a web browser and go to `http://localhost:5000` to access the COVID-19 visualization dashboard.
+5. Open a web browser and go to `http://127.0.0.1:5000/` to access the COVID-19 visualization dashboard.
 
 ## Usage
 
