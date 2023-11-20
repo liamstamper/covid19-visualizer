@@ -59,6 +59,7 @@ def render_dashboard():
         <title>COVID-19 Cases Comparison</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
         <style>
+            
             body {{
                 font-family: Arial, sans-serif;
                 background-color: #f7f7f7;
@@ -81,6 +82,7 @@ def render_dashboard():
             }}
             #chartDiv {{
                 margin-top: 30px;
+                border:1px solid lightgrey;
             }}
         </style>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
