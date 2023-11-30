@@ -12,7 +12,7 @@ url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_cov
 df = pd.read_csv(url)
 
 # Create a Flask web application
-app = Flask(__name__)
+server = Flask(__name__)
 
 # Define a route to render the HTML page
 @app.route('/', methods=['GET', 'POST'])
