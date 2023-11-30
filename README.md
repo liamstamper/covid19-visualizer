@@ -1,5 +1,3 @@
-# COVID-19 Visualization Dashboard
-
 ![COVID-19 Visualization Dashboard](images/screenshot.png)
 
 ## Table of Contents

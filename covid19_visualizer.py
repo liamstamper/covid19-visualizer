@@ -15,7 +15,7 @@ df = pd.read_csv(url)
 server = Flask(__name__)
 
 # Define a route to render the HTML page
-@app.route('/', methods=['GET', 'POST'])
+@server.route('/', methods=['GET', 'POST'])
 def render_dashboard():
     # Get the selected countries from the dropdowns (default to Australia and Brazil)
     selected_country1 = request.form.get('country1', 'Austrailia')
