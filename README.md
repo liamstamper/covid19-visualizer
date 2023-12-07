@@ -1,4 +1,4 @@
-![COVID-19 Visualization Dashboard](images/screenshot.png)
+![COVID-19 Visualization Dashboard](images/demo.png)
 
 ## Table of Contents
 
