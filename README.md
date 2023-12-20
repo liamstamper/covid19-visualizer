@@ -13,7 +13,7 @@
 
 ## Introduction
 
-This web application provides an interactive dashboard for visualizing COVID-19 cases data for different countries. Users can compare the total COVID-19 cases between two selected countries over time using a line chart.
+This web application provides an interactive dashboard for visualizing COVID-19 cases data for different countries. Users can compare the total COVID-19 cases between two selected countries over time using a line chart. This project utalizes the [Johns Hopkins Covid-19 dataset.](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv)
 
 ## Features
 
@@ -71,6 +71,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) f
 
 ## Acknowledgments
 
-Special thanks to the [Johns Hopkins University CSSE](https://github.com/CSSEGISandData/COVID-19) for providing the COVID-19 data.
+Special thanks to the Johns Hopkins University CSSE for providing the COVID-19 data.
    
 
